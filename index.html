@@ -13,7 +13,27 @@
 </head>
 <body>
 <div id="app"><div class="ld">보고서를 불러오는 중…</div></div>
-<script>
+<style>
+.road .wk{border-bottom:1px dashed #dde1ee;padding:12px 0}.road .wh{display:flex;align-items:center;gap:8px}
+.road .wh em{background:#3341c4;color:#fff;font-style:normal;font-weight:700;border-radius:999px;padding:2px 10px;font-size:13px}
+.road .wh span{color:#6b7189;font-size:13px}.road .wh b{font-size:15px;color:#1d2340;flex:1}
+.road .wh i{font-style:normal;font-size:12px;font-weight:700;background:#e3f6dc;color:#3a8a22;border-radius:999px;padding:2px 9px}
+.road .wh i.n{background:#fff1d6;color:#b36b00}.road .wk:not(.on):not(.nx) .wh em{background:#c9cde0}
+.road .cp{display:flex;gap:14px;align-items:center;margin-top:12px;background:#f3f4fa;border-radius:14px;padding:14px}
+.road .cl small{display:block;font-size:12px;color:#6b7189}.road .cl strong{font-size:34px;font-weight:800;line-height:1.1}.road .cl u{text-decoration:none;font-size:16px}
+.road .cr{flex:1;min-width:0}.road .ctr{height:10px;background:#e2e5f0;border-radius:99px;overflow:hidden}.road .ctr i{display:block;height:100%;border-radius:99px}
+.road .cs{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:13px;color:#4a5070}.road .cs b{color:#1d2340}
+.road .sch{margin-top:14px}
+</style><style>.lvc h3.sb{font-size:16px;font-weight:800;color:#3341c4;margin:6px 0 8px}.lvc h3.sb2{margin-top:8px;padding-top:18px;border-top:1px dashed #dde1ee}.lvc .lvs{font-size:15px;line-height:1.6;color:#4a5070;margin:0 0 16px}.lvc .lvs b{color:#1d2340}
+.lvc .ch{position:relative;height:200px;margin:44px 0 34px 28px;display:flex;align-items:flex-end;justify-content:space-around}
+.lvc .gl{position:absolute;left:0;right:0;border-top:1px solid #eceef4;font-style:normal}.lvc .gl s{position:absolute;left:-30px;top:-9px;font-size:12px;color:#a0a5b8;text-decoration:none;width:24px;text-align:right}
+.lvc .col{position:relative;z-index:1;width:22%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.lvc .col strong{position:absolute;font-size:17px;font-weight:800;color:#1d2340}.lvc .bx{width:54px;border-radius:6px 6px 0 0}
+.lvc .col span{position:absolute;bottom:-28px;font-size:15px;font-weight:700;color:#1d2340}</style><style>.road .sch{display:flex!important;flex-direction:column;gap:8px}.road .sch>div{display:flex!important;flex-direction:row!important;text-align:left;padding:12px 14px!important;align-items:center;justify-content:space-between;gap:10px;width:auto!important}
+.road .sch>div span{margin:0!important}.road .sch>div b{margin:0!important;white-space:nowrap}</style><style>.nxp .cards strong{color:#1d2340}</style><style>.road .wd{margin:10px 0 0 4px;padding:0;list-style:none}.road .wd li{position:relative;padding-left:12px;font-size:14px;color:#4a5070;line-height:1.7}.road .wd li:before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:#9aa0bd}</style><style>.road .wn{margin:10px 0 0 0;padding:9px 12px;background:#eef1ff;border-radius:10px;font-size:13.5px;line-height:1.6;color:#3341c4;font-weight:600}</style><style>.road h3.sct{all:unset;display:block;margin:18px 0 0;font-size:16px;font-weight:800;color:#1d2340}</style><style>.tiles{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:5px!important}
+.tiles>div{padding:8px 2px!important;text-align:center;display:flex;flex-direction:column;align-items:center;min-width:0}
+.tiles>div span{font-size:11px!important;line-height:1.25;white-space:normal;display:flex;flex-direction:column;align-items:center;gap:3px;word-break:keep-all}
+.tiles>div b{font-size:20px!important;margin-top:3px}.tiles>div b small{font-size:11px!important}</style><script>
 var OLD="https://script.google.com/macros/s/AKfycbxW5BKDfh3tuWTYDIaZILVPCZwRA4Vbsk0i09XN6-eEpJgauQjHp_hn5AP7x_xM2_Ra/exec";
 var app=document.getElementById("app");
 function E(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -30,13 +50,28 @@ function draw(r){
   if(!r||!r.ok||!r.d)return gone();var D=r.d,P=D.p2||{},h="";
   document.title=(D.name||"")+" "+(D.label||"")+" 보고서";
   h+='<header class="hd"><div class="brand"><i></i>라임라잇 스마트관</div><h1>내신 '+E(D.label)+' 학습 보고서</h1><div class="who"><b>'+E(D.name)+'</b><span>'+E(D.school)+E(D.grade)+' · '+E(D.exam)+' · '+E(D.span)+'</span></div></header>';
-  h+='<section><h2>'+E(D.label)+' 학습 요약</h2><div class="kpi"><div><span>총 학습량</span><b>'+E(D.total)+'<small>문항</small></b></div><div><span>정답</span><b>'+E(D.correct)+'<small>문항</small></b></div><div class="hi"><span>정답률</span><b>'+E(D.rateTxt)+'<small>%</small></b>'+(D.chip?'<em>'+E(D.chip)+'</em>':'')+'</div></div></section>';
+  var pl=P.plan||{},rs=[];(P.blocks||[]).forEach(function(b){(b.rows||[]).forEach(function(r){if(r.rate!=null)rs.push(r.rate)})});
+  var comp=rs.length?Math.round(rs.reduce(function(a,b){return a+b},0)/rs.length):null,T0=P.tiles||{},tt=(T0.st||0)+(T0.g||0)+(T0.y||0)+(T0.r||0)+(T0.h||0)+(T0.x||0);
+  h+='<section class="road"><h2>내신 대비 진행</h2>'+(pl.rows||[]).map(function(x,i){
+    if(x.done) return '<div class="wk on"><div class="wh"><em>'+E(x.wk)+'</em><span>'+E(x.span)+'</span><b>'+E(x.u)+'</b><i>완료</i></div>'+
+      '<div class="cp"><div class="cl"><small>'+E(x.wk)+' 완성도</small><strong style="color:#2e9a3a">'+comp+'<u>%</u></strong></div><div class="cr"><div class="ctr"><i style="width:'+comp+'%;background:#5cc04a"></i></div>'+
+      '<div class="cs"><span>학습지 정답률 <b>'+E(D.rateTxt)+'%</b></span><span>이해한 유형 <b>'+((T0.st||0)+(T0.g||0))+'</b>/'+tt+'</span></div></div></div></div>';
+    var nx=!x.done&&(i===0||(pl.rows[i-1]||{}).done);
+    return '<div class="wk'+(nx?' nx':'')+'"><div class="wh"><em>'+E(x.wk)+'</em><span>'+E(x.span)+'</span><b>'+E(x.u)+'</b>'+(nx?'<i class="n">이번 주</i>':'')+'</div>'+(/서술|파이널/.test(x.u||'')?'<ul class="wd"><li>기출 문항으로 구성한 실전 모의고사</li><li>서술형 집중 관리 — 풀이 과정 쓰기·채점 기준 점검</li></ul><p class="wn">서술형이 부족한 학생은 1주차부터 마스터클리닉에서 서술형 케어를 함께 진행하고 있습니다.</p>':'')+'</div>'}).join("")+
+    '<h3 class="sct">'+E(D.name)+' 학생 내신대비 시간표</h3><div class="sch">'+(pl.sch||[]).map(function(s){return '<div><span>'+E(s.k)+'</span><b>'+E(s.v)+'</b></div>'}).join("")+'</div></section>';
+  (function(){var cs=D.cards||[],rg=((String((cs[0]||{}).s||'').match(/\(([^)]*)\)/)||[])[1]||'').replace('-','~'),u=(((P.plan||{}).rows||[]).filter(function(x){return x.done}).pop()||{}).u||'';
+    if(cs[0])cs[0].s='기말고사까지의 학습 계획을 안내하고, 실제 시험 범위'+(rg?'('+rg+')':'')+'로 모의평가를 치러 지금 실력을 확인했어요.';
+    if(cs[1])cs[1].s='중단원('+u+')마다 개념 설명 → 유형 풀이 → 심화 풀이 순서로 진행하고, 그린라임라잇으로 틀린 유형을 다시 풀어 마무리했어요.';})();
   h+='<section><h2>주요 학습 내용</h2><ol class="cards">'+(D.cards||[]).map(function(c){return '<li><b>'+E(c.t)+'</b><span>'+E(c.s)+'</span></li>'}).join("")+'</ol></section>';
+  (function(){var L={기본:[0,0],실력:[0,0],심화:[0,0]};(P.blocks||[]).forEach(function(b){(b.rows||[]).forEach(function(r){["기본","실력","심화"].forEach(function(k){var v=(r.lv||{})[k]||{},ok=(v.st||0)+(v.g||0),n=ok+(v.y||0)+(v.r||0)+(v.h||0);L[k][0]+=ok;L[k][1]+=n})})});
+    var C={기본:"#9fdc5a",실력:"#ffb357",심화:"#ff7d7d"},ks=["기본","실력","심화"].filter(function(k){return L[k][1]}),pc=function(k){return Math.round(L[k][0]/L[k][1]*100)};
+    var best=ks.slice().sort(function(a,b){return pc(b)-pc(a)})[0],low=ks.slice().sort(function(a,b){return pc(a)-pc(b)})[0];
+    h+='<section class="lvc"><h2>'+E(D.label)+' 학습 분석</h2><h3 class="sb">난이도별 완성도</h3><div class="ch">'+
+      [100,80,60,40,20,0].map(function(g){return '<i class="gl" style="bottom:'+g+'%"><s>'+g+'</s></i>'}).join("")+
+      ks.map(function(k){var p=pc(k);return '<div class="col"><strong style="bottom:calc('+p+'% + 6px)">'+p+'%</strong><div class="bx" style="height:'+p+'%;background:'+C[k]+'"></div><span>'+k+'</span></div>'}).join("")+'</div>'})();
   var bars=(D.sheets||[]).map(function(s){var p=s.n?Math.round(s.c/s.n*100):0,c=s.lv==="기본·실력"?"b":"h",nm=String(s.name||"").split(". ").slice(1).join(". ")||s.name;
     return '<div class="bar"><div class="bt"><b>'+E(nm)+'</b><em class="lv '+c+'">'+E(s.lv)+'</em><span>'+s.c+'/'+s.n+'</span><strong style="color:'+rcol(p)+'">'+p+'%</strong></div><div class="track"><i class="'+c+'" style="width:'+p+'%"></i></div></div>'}).join("");
-  h+='<section><h2>학습지별 정답률</h2><div class="sub">'+(D.diff||[]).map(function(x){return E(x.k)+' '+x.n+'문항'}).join(" · ")+'</div>'+bars+'</section>';
-  var rv=D.review||{};
-  h+='<section><h2>'+E(D.label)+' 총평</h2><div class="rv"><div><em class="g">강점</em><p>'+safe(rv.strong)+'</p></div><div><em class="y">보완 포인트</em><p>'+safe(rv.weak)+'</p></div><div><em class="n">지도 방향</em><p>'+safe(rv.plan)+'</p></div></div></section>';
+  h+='<h3 class="sb sb2">학습지별 정답률</h3><div class="sub">'+(D.diff||[]).map(function(x){return E(x.k)+' '+x.n+'문항'}).join(" · ")+'</div>'+bars+'</section>';
   var T=P.tiles||{},un="";
   (P.blocks||[]).forEach(function(b){un+='<h3>'+E(b.mid)+'</h3>';(b.rows||[]).forEach(function(r){var rate=r.rate;
     un+='<div class="unit"><div class="uh"><div><em>'+E(r.code)+'</em><b>'+E(r.name)+'</b></div><div class="rt"><small>완성도</small><strong style="color:'+rcol(rate)+'">'+(rate==null?"–":rate+"%")+'</strong></div></div>'+
@@ -44,9 +79,14 @@ function draw(r){
   var tl=[["st","완전한 이해",T.st],["g","이해도 높음",T.g],["y","보완 필요",T.y],["r","이해도 낮음",(T.r||0)+(T.h||0)],["x","판단 보류",T.x]]
     .map(function(a){return '<div><span><i class="qi '+a[0]+'"></i>'+a[1]+'</span><b>'+(a[2]||0)+'<small>개</small></b></div>'}).join("");
   h+='<section><h2>유형 이해도</h2><div class="tiles">'+tl+'</div>'+un+'</section>';
-  var pl=P.plan||{};
-  if((pl.rows||[]).length)h+='<section class="plan">'+pl.rows.map(function(x){return '<div class="pr'+(x.done?' dn':'')+'"><em>'+E(x.wk)+'</em><span>'+E(x.span)+'</span><b>'+E(x.u)+'</b>'+(x.done?'<i>완료</i>':'')+'</div>'}).join("")+
-    '<div class="sch">'+(pl.sch||[]).map(function(s){return '<div><span>'+E(s.k)+'</span><b>'+E(s.v)+'</b></div>'}).join("")+'</div></section>';
+  var rv=D.review||{};
+  h+='<section><h2>'+E(D.label)+' 총평</h2><div class="rv"><div><em class="g">강점</em><p>'+safe(String(rv.strong||'').replace(/^총 .*?기록했어요\. ?/,''))+'</p></div><div><em class="y">보완 포인트</em><p>'+safe(rv.weak)+'</p></div></div></section>';
+  (function(){var rows=(P.plan||{}).rows||[],nx=null;for(var i=0;i<rows.length;i++){if(!rows[i].done){nx=rows[i];break}}
+    var wk=(String((rv.plan||'')).match(/<b>([^<]+)<\/b>/)||[])[1]||'';if(!nx)return;
+    h+='<section class="nxp"><h2>'+E(nx.wk)+' 계획</h2><ol class="cards">'+
+      '<li><b>'+E(nx.u)+' 진도</b><span>'+E(nx.span)+' 동안 '+E(nx.u)+' 단원의 개념 설명 → 유형 풀이 → 심화 풀이 순서로 진행하고, 그린라임라잇으로 틀린 유형을 다시 풀어 마무리하겠습니다.</span></li>'+
+      (wk?'<li><b>'+E(D.label)+' 보완 유형 함께 챙기기</b><span>'+E(D.label)+'에 보완이 필요했던 <strong>'+E(wk)+'</strong> 유형은 오답 다시 풀기와 유사 문항으로 '+E(nx.wk)+'에 함께 챙기겠습니다.</span></li>':'')+
+      '</ol></section>'})();
   /* 11/17 15:51 킴쌤: '보완할 부분' 상자 뺌 */
   h+='<div class="call">궁금하신 점은 라임라잇 스마트관으로 편하게 연락 주세요.</div>';
   app.innerHTML='<div class="wrap">'+h+'</div>'}
