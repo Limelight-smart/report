@@ -80,7 +80,7 @@ function draw(r){
     .map(function(a){return '<div><span><i class="qi '+a[0]+'"></i>'+a[1]+'</span><b>'+(a[2]||0)+'<small>개</small></b></div>'}).join("");
   h+='<section><h2>유형 이해도</h2><div class="tiles">'+tl+'</div>'+un+'</section>';
   var rv=D.review||{};
-  h+='<section><h2>'+E(D.label)+' 총평</h2><div class="rv"><div><em class="g">강점</em><p>'+safe(String(rv.strong||'').replace(/^총 .*?기록했어요\. ?/,''))+'</p></div><div><em class="y">보완 포인트</em><p>'+safe(rv.weak)+'</p></div></div></section>';
+  h+='<section><h2>'+E(D.label)+' 총평</h2><div class="rv"><div><em class="g">강점</em><p>'+safe(String(rv.strong||'').split(/(?<=[요다]\.)\s+/).filter(function(x){return !/문항/.test(x)}).join(' '))+'</p></div><div><em class="y">보완 포인트</em><p>'+safe(rv.weak)+'</p></div></div></section>';
   (function(){var rows=(P.plan||{}).rows||[],nx=null;for(var i=0;i<rows.length;i++){if(!rows[i].done){nx=rows[i];break}}
     var wk=(String((rv.plan||'')).match(/<b>([^<]+)<\/b>/)||[])[1]||'';if(!nx)return;
     h+='<section class="nxp"><h2>'+E(nx.wk)+' 계획</h2><ol class="cards">'+
