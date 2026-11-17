@@ -9,10 +9,11 @@
 <title>내신 학습 보고서</title>
 <!-- 학부모 내신 주차 보고서 (킴쌤 11/17). 원본: 비공개 저장소 web/report/ → 보고서 전용 공개 저장소 Limelight-smart/report 로 그대로 복사(빌드 없음, 주소 report.limelight-smart.co.kr).
      학생 정보는 이 파일에 없다. 주소의 ?k=열쇠로 서버(선생님앱_API a=rpt)에 물어 받은 자료(JSON)를 이 파일이 폰 화면으로 그린다. 열쇠가 틀리거나 기간이 지나면 같은 안내. -->
+<link rel="preconnect" href="https://limelight-fast-hrsvpdbbmq-du.a.run.app" crossorigin>
 <link rel="stylesheet" href="report.css?v=1117b">
 </head>
 <body>
-<div id="app"><div class="ld">보고서를 불러오는 중…</div></div>
+<div id="app"><div class="wrap"><header class="hd"><div class="brand"><i></i>라임라잇 스마트관</div><h1>내신 학습 보고서</h1></header><div class="ld">보고서를 불러오는 중…</div></div></div><!-- 11/18 뼈대 먼저(빈 화면 줄임) — 자료가 오면 draw가 통째로 바꿈 -->
 <style>
 .road .wk{border-bottom:1px dashed #dde1ee;padding:12px 0}.road .wh{display:flex;align-items:center;gap:8px}
 .road .wh em{background:#3341c4;color:#fff;font-style:normal;font-weight:700;border-radius:999px;padding:2px 10px;font-size:13px}
@@ -34,6 +35,8 @@
 .tiles>div{padding:8px 2px!important;text-align:center;display:flex;flex-direction:column;align-items:center;min-width:0}
 .tiles>div span{font-size:11px!important;line-height:1.25;white-space:normal;display:flex;flex-direction:column;align-items:center;gap:3px;word-break:keep-all}
 .tiles>div b{font-size:20px!important;margin-top:3px}.tiles>div b small{font-size:11px!important}</style><style>.sum .cp2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sum .cb{background:#f3f4fa;border-radius:14px;padding:12px 14px}.sum .cb small{display:block;font-size:13px;color:#4a5070;font-weight:700}.sum .cb strong{display:block;font-size:32px;font-weight:800;line-height:1.15;margin:2px 0 6px}.sum .cb u{text-decoration:none;font-size:15px}.sum .cb .ctr{height:8px;background:#e2e5f0;border-radius:99px;overflow:hidden}.sum .cb .ctr i{display:block;height:100%}.sum .cb em{display:block;font-style:normal;font-size:11.5px;color:#8a90a8;margin-top:6px}.sum .cs2{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:#4a5070}.sum .cs2 b{color:#1d2340}.road .cp2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.road .cb{background:#f3f4fa;border-radius:14px;padding:12px 14px}.road .cb small{display:block;font-size:13px;color:#4a5070;font-weight:700}.road .cb strong{display:block;font-size:32px;font-weight:800;line-height:1.15;margin:2px 0 6px}.road .cb u{text-decoration:none;font-size:15px}.road .cb .ctr{height:8px;background:#e2e5f0;border-radius:99px;overflow:hidden}.road .cb .ctr i{display:block;height:100%}.road .cb em{display:block;font-style:normal;font-size:11.5px;color:#8a90a8;margin-top:6px}.road .cs2{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:#4a5070}.road .cs2 b{color:#1d2340}</style><script>
+// 11/18 빠른 서버(Cloud Run, 앱 껍데기와 같은 주소 = apps-script/배포기록.json fast.선생님앱_API.url) 먼저 → 2.5초 안에 자료가 안 오거나 실패면 옛 서버(선생님앱_API) 길 그대로
+var FAST="https://limelight-fast-hrsvpdbbmq-du.a.run.app";
 var OLD="https://script.google.com/macros/s/AKfycbxW5BKDfh3tuWTYDIaZILVPCZwRA4Vbsk0i09XN6-eEpJgauQjHp_hn5AP7x_xM2_Ra/exec";
 var app=document.getElementById("app");
 function E(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -93,7 +96,8 @@ function draw(r){
   h+='<div class="call">궁금하신 점은 라임라잇 스마트관으로 편하게 연락 주세요.</div>';
   app.innerHTML='<div class="wrap">'+h+'</div>'}
 var m=/[?&]k=([A-Za-z0-9]{32,64})\b/.exec(location.search),k=m&&m[1];
-if(!k)gone();else call(OLD,k,40000).catch(function(){return call(OLD,k,40000)}).then(draw).catch(gone);
+function old(){return call(OLD,k,40000).catch(function(){return call(OLD,k,40000)})}
+if(!k)gone();else call(FAST,k,2500).then(function(r){if(r&&r.ok&&r.d)return r;throw 0}).catch(old).then(draw).catch(gone);
 </script>
 </body>
 </html>
