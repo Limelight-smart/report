@@ -37,7 +37,8 @@
 .gtw .gtr span{white-space:nowrap}.gtw .gtr .z{color:#c4c8d8;font-weight:500}
 .gtw .gth{font-size:12px;color:#4a5070;padding:6px 0}.gtw .gth i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px;vertical-align:1px}
 .gtw{border-top:1px solid #e3e6f0;margin-top:10px}
-</style></head>
+</style><style>.hpn .srh b{font-size:15px;font-weight:800;display:block}.hnb{display:flex;height:16px;border-radius:99px;overflow:hidden;background:#d9dce8;margin-top:12px}.hnb i{display:block;height:100%}.hnb .g,.hnl .g{background:#2e9a3a}.hnb .y,.hnl .y{background:#f08c00}.hnb .w2,.hnl .w2{background:#c9cde0}.hnb .n,.hnl .n{background:#7d849e}.hnl{display:flex;gap:12px;margin-top:10px;font-size:12.5px;font-weight:700;flex-wrap:wrap;color:#1d2140}.hnl span{display:flex;align-items:center;gap:4px}.hnl i{width:10px;height:10px;border-radius:3px;display:inline-block}.hnt{margin-top:10px;font-size:13px;color:#3a4060;line-height:1.5;word-break:keep-all}.hnt b{color:#1d2140}</style><style>.hpn .srh strong{font-size:40px;font-weight:800;line-height:1;white-space:nowrap}.hpn .srh strong u{font-size:20px;text-decoration:none}.u3 .u3l{display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:center;font-size:11.5px;color:#4a5070;margin:2px 0 8px}.u3 .u3l i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:3px}.u3 .u3g{border-radius:14px;padding:4px 14px 8px;margin-top:14px}.u3 .u3g.a{background:#f4f9f1}.u3 .u3g.b{background:#f3f2fb}.u3 .u3g h4{font-size:15px;margin:10px 0 2px;font-weight:800}.u3 .u3g.a h4{color:#2a7a1e}.u3 .u3g.b h4{color:#5b45c4}.u3 .u3u{padding:12px 0;border-bottom:1px solid rgba(0,0,0,.06)}.u3 .u3u:last-child{border-bottom:0}.u3 .u3t{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;font-weight:700;color:#1d2340;margin-bottom:6px}.u3 .u3p{font-size:30px;font-weight:800;line-height:1;white-space:nowrap}.u3 .u3p u{text-decoration:none;font-size:14px}.u3 .u3b{display:flex;height:12px;border-radius:99px;overflow:hidden;background:#e2e5f0}.u3 .u3b i{display:block;height:100%;border-right:2px solid #fff}.u3 .u3b i:last-child{border-right:0}.u3 .u3n{margin-top:6px;font-size:12.5px;color:#4a5070}.u3 .u3n b{font-size:15px;color:#2e9a3a}.u3 .u3n b.o{color:#c98a00}.u3 .u3n b.w{color:#8a90a8}.u3 .u3n b.x{color:#4a5070}</style>
+</head>
 <body>
 <div id="app"><div class="wrap"><header class="hd"><div class="brand"><i></i>라임라잇 스마트관</div><h1>내신 학습 보고서</h1></header><div class="ld">보고서를 불러오는 중…</div></div></div><!-- 11/18 뼈대 먼저(빈 화면 줄임) — 자료가 오면 draw가 통째로 바꿈 -->
 <style>
@@ -84,7 +85,7 @@ function growCard(t,a,b){var up=a!=null&&b!=null&&b>=a;
     (up?'<div class="ga"><b>→</b><i>+'+(b-a)+'</i><span>틀린 것<br>다시 풀기</span></div><div class="gb g2"><small>다시 푼 뒤</small><strong>'+b+'<u>%</u></strong><em>완전히 이해한 유형 비율</em></div>'
        :'<div class="ga"><i class="nu">다시풀기 중</i><span>틀린 것<br>다시 풀기</span></div><div class="gb g2 nu"><small>다시 푼 뒤</small><strong>'+(b==null?'–':b+'<u>%</u>')+'</strong><em>완전히 이해한 유형 비율</em></div>')+'</div>'+
     (up?'':'<p class="gnote">다음 주 다시풀기로 함께 챙기겠습니다.</p>')+'</div>'}
-function growHtml(D){var g=D.grow||{},H=g.hero||{},rows=g.road||[],h='<section class="sum v2"><h2>'+E(D.label)+' 학습 요약</h2>'+sumRows([(H.s||{}).b],null,g.hp,[D.label])+ /* 11/24 21:29 (가)안 · 23:40 한 줄씩 · 1주차 = 1주차 색 한 구간 */
+function growHtml(D){var g=D.grow||{},H=g.hero||{},rows=g.road||[],h='<section class="sum v2"><h2>'+E(D.label)+' 학습 요약</h2>'+sumRows([(H.s||{}).b],null,g.hp,[D.label],1)+ /* 11/24 21:29 (가)안 · 23:40 한 줄씩 · 1주차 = 1주차 색 한 구간 */
 
   '<p class="intro" style="margin-top:12px">1주차는 처음 배우는 단원이라 <b>이제 시작</b>입니다. 틀린 유형을 다시 풀며 2주차·3주차에 완성도를 올려 갑니다.</p>'+
   (function(){var st=[{t:E(D.label),now:1}].concat(rows.map(function(x){return {t:E(x.wk)}}));if(!rows.some(function(x){return /파이널/.test(x.u||'')})&&!st.some(function(x){return /파이널/.test(x.t)}))st.push({t:'파이널'});
@@ -140,7 +141,7 @@ function barsHtml(L){ /* 11/25 02:17 킴쌤: 대단원마다 기본·실력(완�
   h+='</div>';
   var z=function(x){return '<span class="'+(x?'':'z')+'">'+(x||0)+'</span>'};
   var rows=L.filter(function(u){return u.a}).map(function(u){return '<div class="gtr"><span class="gnm" title="'+E(u.k)+'">'+E(u.k)+'</span><span class="'+(u.d?'':'z')+'">'+u.d+'/'+u.a+'</span>'+z(u.g)+z(u.w)+z(u.x)+'</div>'}).join("");
-  rows=rows?'<div class="gtw"><div class="gtr gth"><span class="gnm">단원</span><span>심화 푼 수</span><span><i style="background:#2e9a3a"></i>완성</span><span><i style="background:#f08c00"></i>보완 중</span><span><i style="background:#9aa0b8"></i>판정 대기</span></div>'+rows+'</div>':'';
+  rows=rows?'<div class="gtw"><div class="gtr gth"><span class="gnm">단원</span><span>심화 푼 수</span><span><i style="background:#2e9a3a"></i>완성</span><span><i style="background:#f08c00"></i>보완 중</span><span><i style="background:#7d849e"></i>판정 대기</span></div>'+rows+'</div>':'';
   return h+rows}
 function sheetHpHtml(L){if(!(L||[]).length)return ''; /* 11/24 23:39 1주차 판: 기본·실력 블록 아래 '단원별 심화 유형 학습 진행도'(1주차 값만, 단원마다) */
   return '<h3 class="sb" style="margin-top:18px">단원별 심화 유형 학습 진행도</h3>'+L.map(function(x){return hpRow(x.k,[x.d],[x.a],['1주차'],1,0,x)}).join("")}
@@ -166,11 +167,36 @@ function band(vals,pal,goal,labs){var n=vals.length,last=vals[n-1],lo=0,mx=0,seg
   if(last==null)return '<div class="band"></div>';
   vals.forEach(function(v,i){if(v==null)return;mx=Math.max(mx,v);var hi=Math.min(mx,last);if(hi>lo){seg+='<i style="left:'+lo+'%;width:'+(hi-lo)+'%;background:'+pal[Math.min(i,pal.length-1)]+'"></i>';lg.push(i)}lo=Math.max(lo,hi)});
   return '<div class="band">'+seg+(goal?'<s style="left:'+goal+'%"></s>':'')+'</div>'+(labs?'<div class="blg">'+lg.map(function(i){return '<span><i style="background:'+pal[Math.min(i,pal.length-1)]+'"></i>'+E(labs[i]||'')+'</span>'}).join("")+'</div>':'')}
-function sumRows(sv,lv2,hp,labs){ /* 11/24 23:40 킴쌤: 맨 위 요약 = 한 줄씩 폭 전체(왼쪽 제목·설명, 오른쪽 큰 %, 아래 주차별 띠) — 기본·실력 → 심화 유형 학습 진행도 */
+/* 11/25 킴쌤 13:57 1·2주차 판(새 틀)만: 심화 카드 = 큰 % 없이 '심화 유형 학습 현황' — 막대 하나 4색(완성·보완 중·판정 대기·아직 안 풂, 분모 = 범위 안 심화 유형 전체)·개수만·상황별 한 줄(규칙 자동). 경계: 안 푼 것이 전체의 10% 이하 = '많이', 그 위 = '일부', 푼 것 0개 = 막대 비움 */
+function ucol(p){return p>=85?'#2e9a3a':p>=70?'#c98a00':'#c2334f'}
+function hpNow(hp){var D=hp.d||[],A=hp.a||[],m=D.length,n=A[m-1]||0,d=D[m-1]||0,g=hp.g||0,w=hp.w||0,x=hp.x||0;if(!n)return '';
+  var nt=Math.max(n-d,0),pc=Math.round(g/n*100),pw=function(v){return (v/n*100).toFixed(1)+'%'},seg=[['g',g],['y',w],['w2',x],['n',nt]],lab={g:'완성',y:'보완 중',w2:'판정 대기',n:'아직 안 풂'},ln='';
+  var bar='<div class="hnb">'+(d?seg.map(function(q){return q[1]?'<i class="'+q[0]+'" style="width:'+pw(q[1])+'"></i>':''}).join(''):'')+'</div>';
+  var lg='<div class="hnl">'+seg.map(function(q){return q[1]?'<span><i class="'+q[0]+'"></i>'+lab[q[0]]+' '+q[1]+'</span>':''}).join('')+'</div>';
+  if(d){if(nt*10<=n){var dt=[g?g+'개 완성':'',w?w+'개 보완 중':''].filter(Boolean).join(', ');ln='<b>'+(nt?n+'개 중 '+d+'개를 직접 풀어 봤어요':n+'개 모두 직접 풀어 봤어요')+'</b>'+(dt?' · '+dt:'')}
+    else ln='<b>'+d+'개를 먼저 풀어 봤어요</b>'+(g?' · '+g+'개 완성':'')+'. 나머지는 다음 주부터 이어서 풀어요'}
+  return '<div class="sr hpr hpn"><div class="srh"><div><b>심화 유형 학습 현황</b></div><strong style="color:'+ucol(pc)+'">'+pc+'<u>%</u></strong></div>'+bar+lg+(ln?'<div class="hnt">'+ln+'</div>':'')+'</div>'}
+function u3band(a){var n=a[0]+a[1]+a[2]+a[3],C=['#2e9a3a','#f08c00','#d5d9e6','#7d849e'];return '<div class="u3b">'+(n?a.map(function(v,i){return v?'<i style="width:'+(v/n*100).toFixed(2)+'%;background:'+C[i]+'"></i>':''}).join(''):'')+'</div>'}
+var U3C={'정비례 반비례':['3.2.1','3.2.2','3.2.3','3.2.4'],'기본도형':['1.1.1','1.1.2','1.2.1','1.2.2','1.3.1','1.3.2','1.3.3'],'다각형':['2.1.1','2.1.2','2.1.3'],'부채꼴':['2.2.1','2.2.2','2.2.3'],'다면체와 회전체':['3.1.1','3.1.2','3.1.3'],'입체도형 겉넓이와 부피':['3.2.1','3.2.2','3.2.3'],'자료의 해석':['4.1.1','4.2.1','4.2.2']};
+function u3in(k,code,mid){var L=U3C[k];if(!L||L.indexOf(code)<0)return false;if(/^3\.2\./.test(code)){var pr=/정비례|반비례/.test(mid||'');return (k==='정비례 반비례')===pr}return true}
+function u3data(D){var P=D.p2||{},F=D.flow||{},G=D.grow||{},B=(F.blocks&&F.blocks.length?F.blocks:P.blocks)||[],U=F.units||[],H=G.hpu||[],ord=U.length?U.map(function(u){return u.k}):(G.bars||[]).map(function(u){return u.k});
+  return ord.map(function(k){var c=[0,0,0,0];
+    B.forEach(function(b){(b.rows||[]).forEach(function(r){if(!u3in(k,r.code,b.mid))return;['기본','실력'].forEach(function(l){var v=(r.lv||{})[l]||{};c[0]+=(v.st||0)+(v.g||0);c[1]+=(v.y||0)+(v.r||0)+(v.h||0);c[2]+=v.x||0;c[3]+=v.ai||0})})});
+    var h=null,q;
+    if(U.length){var u=U.filter(function(x){return x.k===k})[0],r=((u||{}).rows||[]).filter(function(r){return r.lv==='심화'&&r.hp})[0];if(r){q=r.hp;var m=(q.a||[]).length;h={a:q.a[m-1]||0,d:q.d[m-1]||0,g:q.g||0,w:q.w||0,x:q.x||0}}}
+    else{q=H.filter(function(x){return x.k===k})[0];if(q)h={a:q.a,d:q.d,g:q.g,w:q.w,x:q.x}}
+    return {k:k,c:c,h:h}})}
+function u3box(D){var L=u3data(D),lg='<div class="u3l"><span><i style="background:#2e9a3a"></i>완성</span><span><i style="background:#f08c00"></i>보완 중</span><span><i style="background:#d5d9e6"></i>판정 대기</span><span><i style="background:#7d849e"></i>아직 안 풂</span></div>',
+  pt=function(p){return p==null?'<strong class="u3p" style="color:#a0a5b8">–</strong>':'<strong class="u3p" style="color:'+ucol(p)+'">'+p+'<u>%</u></strong>'};
+  var a='<div class="u3g a"><h4>기본·실력 완성도</h4>'+L.map(function(u){var c=u.c,j=c[0]+c[1];return '<div class="u3u"><div class="u3t"><span>'+E(u.k)+'</span>'+pt(j?Math.round(c[0]/j*100):null)+'</div>'+u3band(c)+'</div>'}).join('')+'</div>';
+  var b='<div class="u3g b"><h4>심화 완성도</h4>'+L.filter(function(u){return u.h&&u.h.a}).map(function(u){var h=u.h,nt=Math.max(h.a-h.d,0),t=h.a+'개 중 '+[h.g?'완성 <b>'+h.g+'</b>':'',h.w?'보완 <b class="o">'+h.w+'</b>':'',h.x?'대기 <b class="w">'+h.x+'</b>':'',nt?'안 풂 <b class="x">'+nt+'</b>':''].filter(Boolean).join(' · ');
+    return '<div class="u3u"><div class="u3t"><span>'+E(u.k)+'</span>'+pt(Math.round(h.g/h.a*100))+'</div>'+u3band([h.g,h.w,h.x,nt])+'<div class="u3n">'+t+'</div></div>'}).join('')+'</div>';
+  return '<div class="u3"><h3 class="sb">단원별 유형 학습 현황</h3>'+lg+a+b+'</div>'}
+function sumRows(sv,lv2,hp,labs,nw){ /* 11/24 23:40 킴쌤: 맨 위 요약 = 한 줄씩 폭 전체(왼쪽 제목·설명, 오른쪽 큰 %, 아래 주차별 띠) — 기본·실력 → 심화 유형 학습 진행도 */
   var h='',n=sv.length,sNow=sv[n-1],ar=function(v){var a=[];v.forEach(function(x,i){if(x!=null)a.push(E(labs[i]||'')+' '+x+'%')});return a.length>1?'<span>'+a.join(' → ')+'</span>':''};
   if(sNow!=null)h+='<div class="sr"><div class="srh"><div><b>기본·실력 유형 완성도</b><p>시험 범위의 기본·실력 유형 중 완전히 이해한 유형의 비율이에요. 파이널 전 85%가 목표예요.</p></div><strong style="color:#2e9a3a">'+sNow+'<u>%</u></strong></div>'+
     band(sv,BG,85,labs)+'<div class="srs">'+ar(sv)+(lv2?'<span>'+['기본','실력'].filter(function(k){return lv2[k]!=null}).map(function(k){return k+' '+lv2[k]+'%'}).join(' · ')+'</span>':'')+'</div></div>';
-  if(hp){var D=hp.d||[],A=hp.a||[],m=D.length,pv=D.map(function(d,i){return A[i]==null?null:hpPct(d,A[i])}),p=pv[m-1];
+  if(hp&&nw)h+=hpNow(hp);else if(hp){var D=hp.d||[],A=hp.a||[],m=D.length,pv=D.map(function(d,i){return A[i]==null?null:hpPct(d,A[i])}),p=pv[m-1];
     h+='<div class="sr hpr"><div class="srh"><div><b>심화 유형 학습 진행도</b><p>시험 범위의 심화 유형 중 직접 풀어 본 유형의 비율이에요. 어려운 유형에 얼마나 도전했는지를 보여 줘요.</p></div><strong style="color:#5b45c4">'+(p==null?'–':p+'<u>%</u>')+'</strong></div>'+
       band(pv,BH,0,labs)+'<div class="srs">'+ar(pv)+'<span>'+(A[m-1]||0)+'개 중 '+(D[m-1]||0)+'개 학습</span></div>'+hpChips(hp)+'</div>'}
   return '<div class="srw">'+h+'</div>'}
@@ -204,7 +230,7 @@ function gFlow(D){var f=D.flow||{},U=f.units||[],w1=[],w2=[],nx=f.next||{};U.for
     row('pl ex','◎',E(ex||'시험'),'','','')+'</div></div>'}
 function growCard(D){return '<section class="gc2"><h2>내신대비 계획</h2>'+gFlow(D)+'</section>'}
 function gChips(u){var hp=((u.rows||[])[1]||{}).hp;if(!hp)return '';var z=function(x){return '<span class="'+(x?'':'z')+'">'+(x||0)+'</span>'};return '<div class="gtr"><span class="gnm"><b>'+E(u.k)+'</b>'+(u.since>1?'<em class="nw">새</em>':'')+'</span><span class="'+((hp.a[1]||0)&&hp.d[1]?'':'z')+'">'+(hp.d[1]||0)+'/'+(hp.a[1]||0)+'</span>'+z(hp.g)+z(hp.w)+z(hp.x)+'</div>'}
-function gHead(){return '<div class="gtr gth"><span class="gnm">단원</span><span>심화 푼 수</span><span><i style="background:#2e9a3a"></i>완성</span><span><i style="background:#f08c00"></i>보완 중</span><span><i style="background:#9aa0b8"></i>판정 대기</span></div>'}
+function gHead(){return '<div class="gtr gth"><span class="gnm">단원</span><span>심화 푼 수</span><span><i style="background:#2e9a3a"></i>완성</span><span><i style="background:#f08c00"></i>보완 중</span><span><i style="background:#7d849e"></i>판정 대기</span></div>'}
 function gLines(f){var U=f.units||[],W=330,H=232,x0=36,x1=282,yT=14,yB=170,XS=[x0+34,x0+(x1-x0)/2,x1-14],Y=function(v){return yB-(yB-yT)*v/100},g='<svg class="lc" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="단원별 처음 풀이에서 지금까지 완성도">';
   [0,50,100].forEach(function(v){g+='<line x1="'+x0+'" x2="'+x1+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#eceef5"/><text x="'+(x0-6)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="10" fill="#a0a5b8">'+v+'</text>'});
   g+='<line x1="'+x0+'" x2="'+x1+'" y1="'+Y(85)+'" y2="'+Y(85)+'" stroke="#2e9a3a" stroke-dasharray="3 4"/>';
@@ -222,7 +248,7 @@ function gCum(f){var U=f.units||[],W=330,H=214,x0=34,x1=318,yT=24,yB=170,XS=[0,1
   var tot=[0,0],hd=[0,0];U.forEach(function(u){var c=u.cnt||{};tot[0]+=(c.g||[])[0]||0;tot[1]+=(c.g||[])[1]||0;hd[0]+=(c.hd||[])[0]||0;hd[1]+=(c.hd||[])[1]||0});
   var mx=Math.max(ceil,tot[1])*1.04||1,Y=function(v){return yB-(yB-yT)*v/mx},g='<svg class="lc" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="완성한 유형 누적">';
   [0,0.5,1].forEach(function(r){var v=Math.round(mx*r);g+='<line x1="'+x0+'" x2="'+x1+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#eceef5"/><text x="'+(x0-6)+'" y="'+(Y(v)+4)+'" text-anchor="end" font-size="10" fill="#a0a5b8">'+v+'</text>'});
-  if(ceil)g+='<line x1="'+x0+'" x2="'+x1+'" y1="'+Y(ceil)+'" y2="'+Y(ceil)+'" stroke="#9aa0b8" stroke-dasharray="3 4"/><text x="'+x1+'" y="'+(Y(ceil)-5)+'" text-anchor="end" font-size="11" font-weight="700" fill="#6b7189">범위 전체 '+ceil+'개</text>';
+  if(ceil)g+='<line x1="'+x0+'" x2="'+x1+'" y1="'+Y(ceil)+'" y2="'+Y(ceil)+'" stroke="#7d849e" stroke-dasharray="3 4"/><text x="'+x1+'" y="'+(Y(ceil)-5)+'" text-anchor="end" font-size="11" font-weight="700" fill="#6b7189">범위 전체 '+ceil+'개</text>';
   var lo=[0,0];U.forEach(function(u,i){var c=(u.cnt||{}).g||[0,0],a=[c[0]||0,c[1]||0],col=GP[i%4];
     g+='<polygon fill="'+col+'" fill-opacity=".38" points="'+XS[0]+','+Y(lo[0])+' '+XS[1]+','+Y(lo[1])+' '+XS[1]+','+Y(lo[1]+a[1])+' '+XS[0]+','+Y(lo[0]+a[0])+'"/>';lo[0]+=a[0];lo[1]+=a[1]});
   g+='<polyline fill="none" stroke="#1d2a9a" stroke-width="3" points="'+XS[0]+','+Y(tot[0])+' '+XS[1]+','+Y(tot[1])+'"/><polyline fill="none" stroke="#7048e8" stroke-width="2.5" points="'+XS[0]+','+Y(hd[0])+' '+XS[1]+','+Y(hd[1])+'"/>';
@@ -258,8 +284,8 @@ function gInterp(f){var R=gPat(f),T=GT,o=[],big=function(L){return L.slice().sor
 function growA(f){var U=f.units||[],h='<section class="lvc"><h2>단원별 유형 완성도</h2>';
   var T0=gTot(f);h+='<div class="gc2 in"><div class="g2l"><span><i class="p"></i>1주차</span><span><i class="n"></i>2주차</span></div><div class="gbx">'+gRow('완성한 유형',T0.g0,T0.g1,'개')+gRow('직접 푼 심화 유형',T0.h0,T0.h1,'개')+'</div></div>';
   h+='<h3 class="sb">완성한 유형 · 직접 푼 심화 유형 (누적 개수)</h3><div class="gbl"><span><i class="ln" style="background:#1d2a9a"></i>완성한 유형</span><span><i class="ln" style="background:#7048e8"></i>직접 푼 심화 유형</span></div>'+gCum(f)+'<h3 class="sb">단원별 처음 풀이 → 완성도</h3>';
-  h+='<div class="gbl">'+U.map(function(u,i){return '<span><i class="ln" style="background:'+GP[i%4]+'"></i>'+E(u.k)+(u.since>1?' (새)':'')+'</span>'}).join("")+'</div>'+gLines(f)+gInterp(f)+'<div class="gtb">'+gHead()+U.map(gChips).join("")+'</div></section>';return h}
-function growX(D){return growA(D.flow||{})}
+  h+='<div class="gbl">'+U.map(function(u,i){return '<span><i class="ln" style="background:'+GP[i%4]+'"></i>'+E(u.k)+(u.since>1?' (새)':'')+'</span>'}).join("")+'</div>'+gLines(f)+gInterp(f)+u3box(f._D)+'</section>';return h}
+function growX(D){D.flow._D=D;return growA(D.flow||{})}
 
 /* 11/25 킴쌤 1주차 확정(새 1주차 판 D.grow에만): 내신대비 계획 타임라인 카드(서술형 안내·학생 시간표 포함)를 맨 위로 */
 function w1Card(D){var g=D.grow||{},B=g.bars||[],pl=(D.plan||(D.p2||{}).plan||{}).rows||[],ex=String(D.exam||'').replace(/ 대비$/,'');
@@ -272,12 +298,11 @@ function w1Card(D){var g=D.grow||{},B=g.bars||[],pl=(D.plan||(D.p2||{}).plan||{}
   (r3.wk?row('pl','3',E(r3.wk),E(r3.span||''),'<span class="ut">'+E(/파이널|서술/.test(r3.u||'')?'파이널 실전 모의고사':(r3.u||''))+'</span>','예정'):'')+
   row('pl ex','◎',E(ex||'시험'),'','','')+'</div></div>';
  if(pl.some(function(x){return /서술|파이널/.test(x.u||'')}))h+='<p class="wn">서술형이 부족한 학생은 1주차부터 마스터클리닉에서 서술형 케어를 함께 진행하고 있습니다.</p>';
- var pp=D.plan||(D.p2||{}).plan||{};
- h+='<h3 class="sct">'+E(D.name)+' 학생 내신대비 시간표</h3><div class="sch">'+(pp.sch||[]).map(function(s){return '<div><span>'+E(s.k)+'</span><b>'+E(s.v)+'</b></div>'}).join("")+'</div></section>';
+ h+='</section>';
  return h}
 
 function flowHtml(D){var f=D.flow||{},B=f.big||{},cols=f.cols||[],G2=cols.length===2&&!D.final,h='<div class="v2">'+(G2?growCard(D):''),fr=f.fresh;
-  h+='<section class="sum"><h2>'+E(D.label)+' 학습 요약</h2><p class="intro">'+(fr?'이번 주에는 <b>'+E(fr.t)+'</b> 단원을 새로 배우고, 앞에서 배운 단원도 틀린 유형을 다시 풀었어요. ':'')+'아래 숫자는 <b>지금까지 배운 시험 범위 전체</b>의 완성도예요.</p>'+sumRows(B.s||[],f.lv2,f.hp,cols.map(function(c){return String(c).replace(/ 끝$/,'')}))+
+  h+='<section class="sum"><h2>'+E(D.label)+' 학습 요약</h2><p class="intro">'+(fr?'이번 주에는 <b>'+E(fr.t)+'</b> 단원을 새로 배우고, 앞에서 배운 단원도 틀린 유형을 다시 풀었어요. ':'')+'아래 숫자는 <b>지금까지 배운 시험 범위 전체</b>의 완성도예요.</p>'+sumRows(B.s||[],f.lv2,f.hp,cols.map(function(c){return String(c).replace(/ 끝$/,'')}),G2?1:0)+
     (function(){var bs=B.s||[];if(G2||bs[1]==null)return '';var v=cols.map(function(_,i){return i===0?bs[0]:i===cols.length-1?bs[1]:null});var SL=cols.slice();['3주차 끝','파이널'].forEach(function(x){if(SL.indexOf(x)<0&&SL.length<4)SL.push(x)});
       var bh=B.h||[],hv=cols.map(function(_,i){return i===0?bh[0]:i===cols.length-1?bh[1]:null}),ser=[{v:v,c:'#3341c4',t:'#2a36a8'}]; /* 11/24 23:15 맨 위에도 심화 선(판정 없는 주는 점 없음) */
       return '<h3 class="sb" style="margin-top:14px">배운 범위 전체 · 완성도</h3>'+lineSvg(SL.map(function(x){return x.replace(/ 끝$/,'')}),ser)})()+ /* 11/24 21:33 맨 위 요약 그래프 */
@@ -333,7 +358,7 @@ function draw(r){
   (function(){var L={기본:[0,0],실력:[0,0],심화:[0,0]};(P.blocks||[]).forEach(function(b){(b.rows||[]).forEach(function(r){["기본","실력","심화"].forEach(function(k){var v=(r.lv||{})[k]||{},ok=(v.st||0)+(v.g||0),n=ok+(v.y||0)+(v.r||0)+(v.h||0);L[k][0]+=ok;L[k][1]+=n})})});
     var C={기본:"#9fdc5a",실력:"#ffb357",심화:"#ff7d7d"},ks=["기본","실력","심화"].filter(function(k){return L[k][1]&&!(D.grow&&k==="심화")}),pc=function(k){return Math.round(L[k][0]/L[k][1]*100)};
     var best=ks.slice().sort(function(a,b){return pc(b)-pc(a)})[0],low=ks.slice().sort(function(a,b){return pc(a)-pc(b)})[0];
-    if(D.grow&&(D.grow.bars||[]).length){h+='<section class="lvc"><h2>'+E(D.label)+' 학습 분석</h2>'+barsHtml(D.grow.bars);return}
+    if(D.grow&&(D.grow.bars||[]).length){h+='<section class="lvc"><h2>'+E(D.label)+' 학습 분석</h2>'+u3box(D);return}
     h+='<section class="lvc"><h2>'+E(D.label)+' 학습 분석</h2><h3 class="sb">난이도별 유형 완성도</h3><div class="ch">'+
       [100,80,60,40,20,0].map(function(g){return '<i class="gl" style="bottom:'+g+'%"><s>'+g+'</s></i>'}).join("")+
       ks.map(function(k){var p=pc(k);return '<div class="col"><strong style="bottom:calc('+p+'% + 6px)">'+p+'%</strong><div class="bx" style="height:'+p+'%;background:'+C[k]+'"></div><span>'+k+'</span></div>'}).join("")+'</div>'})();
